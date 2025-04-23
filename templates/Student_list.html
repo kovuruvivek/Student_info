@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <link rel="stylesheet" href="{% static 'css/student_list.css' %}">
+</head>
+<body style="text-align: center;">
+    <table border="1">
+        <tr>
+            <th>FIRST_NAME</th>
+            <th>LAST_NAME</th>
+            <th>ROLL_NO</th>
+            <th>DEPT</th>
+            <th>EMAIL</th>
+            <th>PH.NO</th>
+            <th>DOB</th>
+            <th>ADDRESS</th>
+        </tr>
+        {% for x in Stu %}
+            <tr>
+                <td>{{x.firstname}}</td>
+                <td>{{x.lastname}}</td>
+                <td>{{x.roll_number}}</td>
+                <td>{{x.dept}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.phone_number}}</td>
+                <td>{{x.dob}}</td>
+                <td>{{x.address}}</td>
+                <td><a href="{% url 'edit_list' x.id %}" class="button-link btn-edit">Edit</a></td>
+                <td><a href="{% url 'delete' x.id %}" class="button-link btn-delete">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <form action="{% url 'home' %}">
+        <button type="submit">Home</button>
+    </form>
+    
+</body>
+</html>
